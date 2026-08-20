@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy Birthday, My Love ❤️ | A Special Surprise For You</title>
+  <meta name="description" content="A magical, romantic, interactive birthday surprise and love story experience created with love." />
+  <meta name="theme-color" content="#140718" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600;1,800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient Glowing Background Spheres -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Interactive Canvas Layers -->
+  <canvas id="bg-particles-canvas"></canvas>
+  <canvas id="fx-particles-canvas"></canvas>
+  <canvas id="night-sky-canvas"></canvas>
+
+  <!-- Preloader Screen -->
+  <div id="preloader">
+    <div class="loader-heart">💖</div>
+    <div class="loader-text">I made something special for you... ❤️</div>
+  </div>
+
+  <!-- Top Navigation Header -->
+  <header class="top-nav">
+    <div class="brand-badge">
+      <span>✨</span>
+      <span id="brand-gf-name">For You</span>
+      <span>❤️</span>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Music Pill Controller -->
+      <button id="music-toggle-btn" class="music-btn" title="Toggle Romantic Melody">
+        <span id="music-icon">🎵</span>
+        <div id="music-visualizer" class="music-waves">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <span id="music-status-text">Romantic Music</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Journey Progress Tracker -->
+  <div class="progress-container">
+    <div class="progress-track">
+      <div id="progress-bar-fill" class="progress-bar-fill"></div>
+    </div>
+    <div class="progress-labels">
+      <span class="step-label active" data-step="1">1. Surprise</span>
+      <span class="step-label" data-step="2">2. Love Game</span>
+      <span class="step-label" data-step="3">3. Wish</span>
+      <span class="step-label" data-step="4">4. Memories</span>
+      <span class="step-label" data-step="5">5. Story</span>
+      <span class="step-label" data-step="6">6. Night Sky</span>
+    </div>
+  </div>
+
+  <!-- Main Viewport -->
+  <main id="app-viewport">
+
+    <!-- ─── SCENE 1: The Interactive Gift Box ─────────────────────── -->
+    <section id="scene-1" class="scene active" data-scene="1">
+      <div class="glass-card">
+        
+        <div id="opening-initial">
+          <h1 id="scene-1-greeting" class="opening-header">Hey Beautiful... ❤️</h1>
+          <p id="scene-1-subtitle" class="opening-subtitle">I have a little surprise for you.</p>
+
+          <!-- 3D Gift Box -->
+          <div id="gift-box-wrapper" class="gift-box-wrapper" title="Click to open the gift!">
+            <div class="gift-box">
+              <div class="gift-box-lid">
+                <span class="gift-bow">🎀</span>
+              </div>
+              <div class="gift-box-body">
+                <div class="gift-ribbon-v"></div>
+              </div>
+            </div>
+          </div>
+
+          <p id="scene-1-prompt" class="gift-prompt-text">Tap the magical gift box to open your surprise ✨</p>
+          
+          <button id="open-gift-btn" class="btn-primary" onclick="document.getElementById('gift-box-wrapper').click()">
+            <span>Open Your Birthday Surprise ✨</span>
+          </button>
+        </div>
+
+        <!-- Content revealed after box opens -->
+        <div id="opening-revealed" class="opening-revealed-content">
+          <div style="font-size: 3rem; margin-bottom: 10px;">✨ 🎁 ✨</div>
+          <h2 id="scene-1-reveal-title" class="quote-highlight">
+            "Today isn't just another day..."
+          </h2>
+          <p id="scene-1-reveal-subtitle" class="quote-sub">
+            It's the day someone incredibly special came into this world. ❤️
+          </p>
+          <button id="to-scene-2-btn" class="btn-primary">
+            <span>Let's Play A Little Game ✨</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── SCENE 2: "Catch The Love" Mini Game ────────────────────── -->
+    <section id="scene-2" class="scene" data-scene="2">
+      <div class="glass-card">
+        
+        <div class="game-header-area">
+          <h2 id="game-title-text" class="game-title">Catch My Love ❤️</h2>
+          <p id="game-subtitle-text" class="game-subtitle">Tap the floating hearts to collect my love for you!</p>
+          
+          <div class="game-score-card">
+            <span class="score-heart-icon">💖</span>
+            <span>Hearts Collected:</span>
+            <span id="heart-counter" class="score-count">0</span>
+            <span>/</span>
+            <span id="target-counter" class="score-count">7</span>
+          </div>
+        </div>
+
+        <!-- Mini Game Canvas Board -->
+        <div id="game-board">
+          <div id="game-love-toast" class="game-love-toast">
+            You make my world brighter ❤️
+          </div>
+        </div>
+
+        <!-- Completion Modal Banner -->
+        <div id="game-congrats-modal" class="game-congrats-modal">
+          <h3 id="game-win-title" class="quote-highlight">You collected all the love... ❤️</h3>
+          <p id="game-win-subtitle" class="quote-sub">
+            Every piece of my heart belongs to you... but I still have one more surprise for you.
+          </p>
+          <button id="to-scene-3-btn" class="btn-primary">
+            <span>Unlock Your Birthday Message 💝</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── SCENE 3: Grand Birthday Reveal & Letter ────────────────── -->
+    <section id="scene-3" class="scene" data-scene="3">
+      <div class="glass-card reveal-wrapper">
+        
+        <div style="font-size: 2.5rem; margin-bottom: 8px;">🎂 🌹 ✨</div>
+        <h2 id="birthday-reveal-heading" class="birthday-glow-heading">
+          Happy Birthday, My Love ❤️
+        </h2>
+
+        <!-- Typewriter Romantic Letter -->
+        <div class="letter-paper">
+          <div id="letter-typing-text" class="letter-content-typing">
+            <span class="typewriter-cursor"></span>
+          </div>
+          <div id="letter-signature" class="letter-signature">
+            — Yours Forever ❤️
+          </div>
+        </div>
+
+        <button id="to-scene-4-btn" class="btn-primary">
+          <span>Our Little Memories 📸✨</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- ─── SCENE 4: Memory Scrapbook & Gallery ────────────────────── -->
+    <section id="scene-4" class="scene" data-scene="4">
+      <div class="glass-card">
+        
+        <div class="scrapbook-header">
+          <h2 id="scrapbook-title" class="section-title">Our Little Memories 📸❤️</h2>
+          <p id="scrapbook-subtitle" class="section-subtitle">
+            A digital scrapbook of moments I will cherish forever.
+          </p>
+        </div>
+
+        <!-- Filter Categories -->
+        <div id="category-filters" class="category-filter-bar"></div>
+
+        <!-- Photo/Video Scrapbook Grid -->
+        <div id="scrapbook-grid" class="scrapbook-grid"></div>
+
+        <button id="to-scene-5-btn" class="btn-primary">
+          <span>Our Story Timeline 📖❤️</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- ─── SCENE 5: "Our Story" Timeline ──────────────────────────── -->
+    <section id="scene-5" class="scene" data-scene="5">
+      <div class="glass-card">
+        
+        <h2 id="timeline-title" class="section-title">Our Story ❤️</h2>
+        <p id="timeline-subtitle" class="section-subtitle">
+          Every chapter with you is my favorite adventure.
+        </p>
+
+        <!-- Vertical Milestone Path -->
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          <div id="timeline-events-list"></div>
+        </div>
+
+        <button id="to-scene-6-btn" class="btn-primary">
+          <span>Make A Wish Under The Stars 🌙✨</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- ─── SCENE 6: Night Sky & Final Birthday Wish ───────────────── -->
+    <section id="scene-6" class="scene night-sky-scene" data-scene="6">
+      <div class="glass-card">
+        
+        <!-- Glowing 3D Moon -->
+        <div class="moon-glow-container">
+          <div class="glowing-moon"></div>
+        </div>
+
+        <h3 id="wish-prelude-text" class="wish-prelude">
+          If I could make one wish today...
+        </h3>
+
+        <p id="wish-statement-text" class="wish-statement">
+          "I'd wish for you to always be happy, always keep smiling, and for us to create thousands of beautiful memories together. ❤️"
+        </p>
+
+        <h1 id="final-name-heading" class="final-name-proclamation">
+          Happy Birthday, Savi ❤️
+        </h1>
+
+        <p id="final-subtitle-note" class="final-subtitle-note">
+          You are one of the most beautiful chapters of my life.
+        </p>
+
+        <p id="sky-tap-hint" class="sky-tap-hint">
+          ✨ Tap anywhere in the night sky to release glowing love lanterns ✨
+        </p>
+
+        <div class="final-actions-group">
+          <button id="release-lantern-btn" class="btn-secondary">
+            <span>🏮 Release A Lantern</span>
+          </button>
+          <button id="replay-story-btn" class="btn-primary">
+            <span>Replay Our Story ❤️</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Fullscreen Lightbox Modal for Photos & Videos -->
+  <div id="lightbox-overlay" class="lightbox-overlay">
+    <div class="lightbox-dialog">
+      <button id="lightbox-close-btn" class="lightbox-close-btn" title="Close Lightbox">✕</button>
+      
+      <div class="lightbox-media-container">
+        <img id="lightbox-image" src="" alt="Memory preview" />
+        <video id="lightbox-video" controls playsinline style="display: none;"></video>
+      </div>
+
+      <div class="lightbox-info">
+        <h3 id="lightbox-title" class="lightbox-title"></h3>
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+        <div id="lightbox-date" class="lightbox-date"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="config.js"></script>
+  <script src="audio.js"></script>
+  <script src="particles.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
