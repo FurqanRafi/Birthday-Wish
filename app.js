@@ -532,6 +532,8 @@ document.addEventListener('DOMContentLoaded', () => {
       lightboxImg.style.display = 'none';
       lightboxVideo.style.display = 'block';
       lightboxVideo.src = item.url;
+      lightboxVideo.muted = true;
+      lightboxVideo.volume = 0;
       lightboxVideo.play().catch(() => {});
     } else {
       lightboxVideo.style.display = 'none';
